@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="root">
     <Layout/>
   </div>
 </template>
@@ -9,5 +9,5 @@ import '@/style/index.scss'
 import Layout from '@/views/layout.vue'
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 </style>

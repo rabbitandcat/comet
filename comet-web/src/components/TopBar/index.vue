@@ -1,7 +1,6 @@
 <template>
     <header class="top-bar">
         <div class="left-menu">
-            <div>款型&工艺</div>
             <div>关于我们</div>
         </div>
         <div class="logo">
@@ -27,15 +26,14 @@
 
 <style lang="scss" scoped>
 
-@font-face {
-    font-family: 'SiYuan';
-    src: url('@/assets/font/NotoSansHans-Regular.otf')
-}
+
 .top-bar {
+    overflow: hidden;
+    width: 100vw;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 5rem;
+    height: 6rem;
     padding: 0 5rem;
     background-color: transparent;
 
@@ -47,7 +45,7 @@
         font-family: 'SiYuan';
 
         div {
-            font-size: 1rem;
+            font-size: 0.8rem;
             font-weight: 500;
             color: #000;
             cursor: pointer;
@@ -90,17 +88,17 @@
                 cursor: pointer;
             }
 
-            .qq-icon {
-                width: 1rem;
-            }
+            // .qq-icon {
+            //     width: 1rem;
+            // }
 
-            .weixin-icon {
-                width: 1.3rem;
-            }
+            // .weixin-icon {
+            //     width: 1.3rem;
+            // }
 
-            .weibo-icon {
-                width: 1.3rem;
-            }
+            // .weibo-icon {
+            //     width: 1.3rem;
+            // }
         }
 
         .cart-user {
@@ -119,7 +117,7 @@
 
             .user-icon {
                 margin-left: 1.5rem;
-                width: 1.2rem;
+                width: 1.1rem;
             }
         }
     }

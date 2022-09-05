@@ -11,4 +11,8 @@ $light-gray: #D8D8D8 !default;
 $bg-yellow: #FFC300 !default;
 $bg-orange: #FFAF84 !default;
 
+@font-face {
+    font-family: 'SiYuan';
+    src: url('@/assets/font/NotoSansHans-Regular.otf')
+}
 
