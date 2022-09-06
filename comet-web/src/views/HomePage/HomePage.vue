@@ -41,9 +41,9 @@
         height: 100%;
 
         .alphabet {
-            width: 36vw;
-            padding-left: 12vw;
-            padding-top: 13vw;
+            width: 76vh;
+            padding-left: 26vh;
+            padding-top: 28vh;
         }
     }
 
