@@ -314,8 +314,11 @@
                     </div>
                     <div class="button-area">
                         <div class="left-btns">
+                            <img class="trash-icon" src="@/assets/svg/trash-can.svg" alt="">
                         </div>
                         <div class="right-btns">
+                            <img class="clip-icon" src="@/assets/svg/clip.svg" alt="">
+                            <img class="correct-icon" src="@/assets/svg/correct.svg" alt="">
                         </div>
                     </div>
                 </div>
@@ -331,17 +334,62 @@
                         选择印花工艺
                     </div>
                     <ul class="printing-list">
+                        <div class="arrow-container">
+                            <img src="@/assets/svg/arrow.svg" alt="">
+                        </div>
                         <li class="printing-item">
                             丝网印
                         </li>
+                        <li class="printing-item">
+                            烫画
+                        </li>
+                        <li class="printing-item">
+                            直喷
+                        </li>
+                        <li class="printing-item">
+                            刺绣
+                        </li>
                     </ul>
                 </div>
+                <div class="btn-area"></div>
                 <button class="next-step">
                     下一步
                 </button>
-                <p class="how-to-choose">
+                <a class="how-to-choose">
                     不知道如何选择工艺？
+                </a>
+            </div>
+        </section>
+        <section class="nfc-page">
+            <div class="left-container">
+                <p class="title">
+                    STEP.3进行您的防伪NFC编码
                 </p>
+            </div>
+            <div class="right-container">
+                <div class="nfc-setting">
+                    <div class="nfc-num">
+                        <p>设置您的NFC编码数量（定制数量）</p>
+                        <input type="text" class="num-input">
+                    </div>
+                    <div class="nfc-generate">
+                        <p>生成您的NFC防伪编码</p>
+                        <input type="text" class="generate-input">
+                        <button class="generate">生成</button>
+                    </div>
+                    <div class="customize">
+                        生成您的NFC防伪编码
+                    </div>
+                </div>
+                <div class="bottom-container">
+                    <div class="btns">
+                        <img src="@/assets/svg/smile.svg" alt="">
+                        <img src="@/assets/svg/image.svg" alt="">
+                    </div>
+                    <button class="complete">
+                        完成
+                    </button>
+                </div>
             </div>
         </section>
     </div>
@@ -566,7 +614,6 @@
         background-size: cover;
 
         .left-container {
-            border: 1px solid red;
             display: flex;
             justify-content: center;
             flex-direction: column;
@@ -627,7 +674,7 @@
 
             .nft-container {
                 width: 100%;
-                height: 50%;
+                height: 60%;
                 background-color: #fff;
                 border-radius: 1rem;
                 box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.25);
@@ -647,7 +694,7 @@
                     .nft-item {
                         overflow: hidden;
                         width: 26%;
-                        height: 30%;
+                        height: 25%;
                         margin: 0.5rem;
                         background-color: #fff;
                         border-radius: 1rem;
@@ -711,28 +758,29 @@
         .middle-container {
             width: 30%;
             height: 100%;
-            border: 1px solid red;
             display: flex;
             justify-content: center;
             align-items: center;
+            margin: 0 2%;
 
             .clothe-container {
+                padding-top: 3%;
                 border-radius: 1rem;
                 box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.25);
                 background-color: #fff;
                 width: 100%;
-                height: 56.5%;
+                height: 65%;
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 flex-direction: column;
 
                 .tshirt-container {
-                    margin-top: 5%;
                     width: 95%;
                     height: 90%;
                     border-radius: 1rem;
                     background: rgba(1, 1, 1, 0.04);
+
                     img {
                         width: 100%;
                         margin-top: -5%;
@@ -740,123 +788,117 @@
                 }
 
                 .button-area {
-                    border: 1px solid blue;
                     width: 100%;
                     height: 3rem;
                     display: flex;
-                    justify-content: center;
+                    justify-content: space-between;
                     align-items: center;
 
                     .left-btns {
-                        border: 1px solid red;
                         width: 10vh;
                         height: 2rem;
                         display: flex;
                         justify-content: center;
                         align-items: center;
-                        cursor: pointer;
+
+                        .trash-icon {
+                            cursor: pointer;
+                        }
                     }
 
                     .right-btns {
-                        border: 1px solid red;
+                        padding: 0 2vh;
                         width: 10vh;
                         height: 2rem;
                         display: flex;
-                        justify-content: center;
+                        justify-content: space-between;
                         align-items: center;
-                        cursor: pointer;
+
+                        .clip-icon,
+                        .correct-icon {
+                            cursor: pointer;
+                        }
                     }
                 }
             }
         }
 
         .right-container {
-            border: 1px solid red;
-            height: 100%;
+            height: 65%;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: center;
             width: 30%;
             margin-right: 10%;
 
             .step2 {
-                border: 1px solid green;
-                width: 30vh;
-                height: 3rem;
+                text-shadow: 0rem 0.2rem 1rem rgba(0, 0, 0, 0.25);
+                padding-left: 5%;
+                width: 60%;
+                font-size: 3rem;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                font-size: 1.5rem;
                 font-weight: bold;
                 color: #fff;
             }
 
             .printing-container {
-                border: 1px solid green;
+                margin-top: 5%;
+                overflow: hidden;
                 width: 30vh;
-                height: 50vh;
-                margin-top: 2rem;
+                height: 50%;
                 background-color: #fff;
                 border-radius: 1rem;
                 box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.25);
                 display: flex;
+                flex-direction: column;
                 justify-content: center;
                 align-items: center;
 
                 .printing-title {
-                    border: 1px solid blue;
                     width: 100%;
-                    height: 3rem;
+                    height: 20%;
                     display: flex;
                     justify-content: center;
                     align-items: center;
                     font-size: 1rem;
-                    font-weight: bold;
-                    color: #601986;
+                    font-weight: bolder;
+                    color: #3D3D3D;
                 }
 
                 .printing-list {
-                    border: 1px solid blue;
+                    border-radius: 1rem;
+                    overflow: hidden;
                     width: 100%;
-                    height: 100%;
+                    height: 80%;
                     display: flex;
-                    flex-wrap: wrap;
+                    background-color: #D3D3D3;
+                    flex-direction: column;
                     justify-content: center;
                     align-items: center;
 
+                    .arrow-container {
+                        padding-bottom: 1%;
+                    }
+
                     .printing-item {
-                        border: 1px solid red;
-                        width: 10vh;
-                        height: 10vh;
-                        margin: 0.5rem;
-                        background-color: #fff;
-                        border-radius: 1rem;
-                        box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.25);
+                        font-weight: bolder;
+                        width: 100%;
+                        height: 20%;
+                        padding: 2% 0;
+                        padding-left: 20%;
                         display: flex;
-                        justify-content: center;
                         align-items: center;
                         cursor: pointer;
 
-                        img {
-                            border: 1px solid green;
-                            width: 8vh;
-                            height: 8vh;
+                        &:hover {
                             background-color: #fff;
-                            border-radius: 1rem;
-                            box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.25);
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
-
-                            img {
-                                width: 100%;
-                                height: 100%;
-                            }
                         }
 
+
+
                         .printing-name {
-                            border: 1px solid blue;
                             width: 100%;
                             height: 2rem;
                             margin-top: 0.5rem;
@@ -872,11 +914,11 @@
             }
 
             .next-step {
-                border: 1px solid green;
+                margin-top: 2%;
                 width: 30vh;
-                height: 3rem;
-                margin-top: 2rem;
-                background-color: #601986;
+                height: 8%;
+                border: none;
+                background-image: linear-gradient(30deg, #7936EC 0%, #C35BAD 70%, #FF7979 100%);
                 border-radius: 1rem;
                 box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.25);
                 display: flex;
@@ -889,20 +931,155 @@
             }
 
             .how-to-choose {
-                border: 1px solid green;
                 width: 30vh;
-                height: 3rem;
-                margin-top: 2rem;
-                background-color: #fff;
+                height: 10%;
                 border-radius: 1rem;
-                box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.25);
                 display: flex;
+                text-decoration: underline;
                 justify-content: center;
                 align-items: center;
-                font-size: 1rem;
+                font-size: 1.2rem;
                 font-weight: bold;
-                color: #601986;
+                color: #3662EC;
                 cursor: pointer;
+            }
+        }
+    }
+
+    .nfc-page {
+        background-image: linear-gradient(30deg, #FFC300 0%, #FFAF84 100%);
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .left-container {
+            width: 30%;
+            height: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .title {
+                font-size: 3rem;
+                font-weight: bold;
+                color: #fff;
+                width: 17rem;
+                text-shadow: 0rem 0.2rem 1rem rgba(0, 0, 0, 0.25);
+            }
+        }
+
+        .right-container {
+            overflow: hidden;
+            padding: 1% 1.5%;
+            border-radius: 1rem;
+            width: 40%;
+            height: 50%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-direction: column;
+            background-color: #fff;
+
+            div.nfc-setting {
+                font-weight: bold;
+                width: 100%;
+                height: 70%;
+
+                .nfc-num {
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-start;
+                    padding: 1% 2%;
+                    border-bottom: 1px solid gray;
+                    height: 15%;
+                    display: flex;
+                    align-items: center;
+
+                    p {
+                        padding-right: 7.5%;
+                    }
+
+                    .num-input {
+                        height: 80%;
+                        border-radius: 2rem;
+                        outline: none;
+                        border: none;
+                        background-color: rgba(0, 0, 0, 0.04);
+                    }
+                }
+
+                .nfc-generate {
+                    padding: 1% 2%;
+                    border-bottom: 1px solid gray;
+                    height: 15%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+
+                    p {
+                        // padding-right: 20%;
+                    }
+
+                    .generate-input {
+                        height: 80%;
+                        border-radius: 2rem;
+                        outline: none;
+                        border: none;
+                        background-color: rgba(0, 0, 0, 0.04);
+                    }
+
+                    .generate {
+                        margin-left: 10%;
+                        padding: 1% 2%;
+                        box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.25);
+                        text-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.25);
+                        border: none;
+                        border-radius: 0.5rem;
+                        background-image: linear-gradient(to right, #7936EC, #C35BAD, #FF7979);
+                        color: #fff;
+                        font-size: 1rem;
+                        font-weight: bold;
+                        cursor: pointer;
+                    }
+                }
+
+                .customize {
+                    padding: 1% 2%;
+                    border-bottom: 1px solid gray;
+                    height: 15%;
+                    display: flex;
+                    align-items: center;
+                }
+            }
+
+            .bottom-container {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                .btns {
+                    display: flex;
+                    align-items: center;
+                    img {
+                        margin-right: 30%;
+                    }
+                }
+
+                .complete {
+                    padding: 1% 8%;
+                    box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.25);
+                    text-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.25);
+                    border: none;
+                    border-radius: 0.5rem;
+                    background-image: linear-gradient(to right, #7936EC, #C35BAD, #FF7979);
+                    color: #fff;
+                    font-size: 1rem;
+                    font-weight: bold;
+                    cursor: pointer;
+                }
             }
         }
     }
