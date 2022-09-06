@@ -17,7 +17,9 @@ import PreviewPage from '@/views/HomePage/PreviewPage.vue'
 import NFCPage from '@/views/HomePage/NFCPage.vue'
 import OrderPage from '@/views/HomePage/OrderPage.vue'
 import { onMounted, watch, ref } from 'vue'
+import { useTopBar } from '@/store/topBar'
 
+const topBar = useTopBar()
 
 // 防抖
 const debounce = (func: Function, wait: number = 1000) => {
@@ -30,20 +32,6 @@ const debounce = (func: Function, wait: number = 1000) => {
     }
 }
 
-// 平滑滚动
-// const smoothScroll = (targetY: number, currentScroll: number): void => {
-//     const step = () => {
-//         currentScroll = currentScroll + (targetY - currentScroll) / 50
-//         if (Math.abs(targetY - currentScroll) < 2) {
-//             window.scrollTo(0, targetY)
-//         } else {
-//             window.scrollTo(0, currentScroll)
-//             requestAnimationFrame(step)
-//         }
-//     }
-//     step()
-// }
-
 // 滚动监听
 const onScrollHandle = (e: any): void => {
     let currentScroll = document.documentElement.scrollTop || document.body.scrollTop
@@ -53,6 +41,7 @@ const onScrollHandle = (e: any): void => {
     const nfcPage: any = document.getElementsByClassName('nfc-page')[0]
     const orderPage: any = document.getElementsByClassName('order-page')[0]
     if (e.wheelDelta < 0) {
+        topBar.topBarShow = false;
         if (Math.abs(currentScroll - homePage.offsetTop) < 100 && currentScroll < patternPage.offsetTop) {
             scrollTo(0, patternPage.offsetTop)
         } else if (currentScroll < previewPage.offsetTop && Math.abs(currentScroll - patternPage.offsetTop) < 100) {
@@ -61,10 +50,12 @@ const onScrollHandle = (e: any): void => {
             scrollTo(0, nfcPage.offsetTop)
         } else if (Math.abs(currentScroll - nfcPage.offsetTop) < 100 && currentScroll < orderPage.offsetTop) {
             scrollTo(0, orderPage.offsetTop)
+            topBar.topBarShow = true
         }
     }
 
     if (e.wheelDelta > 0) {
+        topBar.topBarShow = true
         if (Math.abs(currentScroll - patternPage.offsetTop) < 100 && currentScroll > homePage.offsetTop) {
             scrollTo(0, homePage.offsetTop)
         } else if (currentScroll > patternPage.offsetTop && Math.abs(currentScroll - previewPage.offsetTop) < 100) {

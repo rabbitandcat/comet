@@ -26,6 +26,7 @@ import HomePage from '@/views/HomePage/index.vue'
     .header {
         width: 100%;
         position: fixed;
+        left: 0;
     }
     .main {
         width: 100%;

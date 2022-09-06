@@ -1,33 +1,38 @@
 <template>
-    <header class="top-bar">
-        <div class="left-menu">
-            <div class="about-us">关于我们</div>
-        </div>
-        <div class="logo">
-            <img class="logo-icon" src="@/assets/svg/logo.svg" alt="">
-        </div>
-        <div class="right-menu">
-            <div class="share">
-                <img class="qq-icon" src="@/assets/svg/qq.svg" alt="">
-                <img class="weixin-icon" src="@/assets/svg/weixin.svg" alt="">
-                <img class="weibo-icon" src="@/assets/svg/weibo.svg" alt="">
+    <transition name="topbar">
+        <header class="top-bar" v-if="topBar.topBarShow">
+            <div class="left-menu">
+                <div class="about-us">关于我们</div>
             </div>
-            <div class="cart-user">
-                <img class="cart-icon" src="@/assets/svg/cart.svg" alt="">
-                <img class="user-icon" src="@/assets/svg/user.svg" alt="">
+            <div class="logo">
+                <img class="logo-icon" src="@/assets/svg/logo.svg" alt="">
             </div>
-        </div>
-    </header>
+            <div class="right-menu">
+                <div class="share">
+                    <img class="qq-icon" src="@/assets/svg/qq.svg" alt="">
+                    <img class="weixin-icon" src="@/assets/svg/weixin.svg" alt="">
+                    <img class="weibo-icon" src="@/assets/svg/weibo.svg" alt="">
+                </div>
+                <div class="cart-user">
+                    <img class="cart-icon" src="@/assets/svg/cart.svg" alt="">
+                    <img class="user-icon" src="@/assets/svg/user.svg" alt="">
+                </div>
+            </div>
+        </header>
+    </transition>
 </template>
 
 <script lang='ts' setup>
-
+import { ref, onMounted, watch } from 'vue'
+import { useTopBar } from '@/store/topBar'
+const topBar = useTopBar()
+topBar.topBarShow = true
 </script>
 
 <style lang="scss" scoped>
 .top-bar {
     overflow: hidden;
-    width: 100%;
+    width: 100vw;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -125,5 +130,36 @@
         }
     }
 
+}
+
+.topbar-enter-active, .topbar-leave-active {
+    transition: all 0.5s;
+}
+
+.topbar-enter-from, .topbar-leave-to {
+    transform: translateY(-100%);
+    opacity: 0;
+}
+.topbar-enter-to, .topbar-leave-from {
+    transform: translateY(0);
+}
+
+@keyframes bounce {
+    0% {
+        background-color: transparent;
+        transform: translateY(0);
+    }
+    50% {
+        background-color: rgba(255, 255, 255, 0.1);
+        transform: translateY(-30%);
+    }
+    100% {
+        background-color: rgba(255, 255, 255, 0.6);
+        transform: translateY(0);
+    }
+}
+
+.topbar-enter-active {
+    animation: bounce 0.5s;
 }
 </style>

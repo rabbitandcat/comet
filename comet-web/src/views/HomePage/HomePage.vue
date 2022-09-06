@@ -13,7 +13,7 @@
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 汇星为您提供NFT的实体化T恤定制服务，现在开始拥有一件独一无二的私人T恤！
             </div>
-            <button class="customize">
+            <button class="customize" v-on:click="topBar.topBarShow = !topBar.topBarShow">
                 开始定制！
             </button>
         </div>
@@ -21,7 +21,8 @@
 </template>
 
 <script lang='ts' setup>
-
+import { useTopBar } from '@/store/topBar';
+const topBar = useTopBar()
 </script>
 
 <style lang="scss">
