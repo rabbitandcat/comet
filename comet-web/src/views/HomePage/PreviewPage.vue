@@ -128,7 +128,7 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    background-image: linear-gradient(30deg, #FFC300 0%, #FFAF84 100%);
+    background-color: transparent;
     background-size: cover;
 
     .left-container {
@@ -446,6 +446,11 @@
             font-weight: bold;
             color: #fff;
             cursor: pointer;
+
+            &:hover {
+                transform: scale(1.05);
+                box-shadow: 0.2rem 0.3rem 0.4rem rgba(0, 0, 0, 0.25);
+            }
         }
 
         .how-to-choose {

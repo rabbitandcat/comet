@@ -234,12 +234,13 @@
 
 <style lang="scss">
 .pattern-page {
+    scroll-behavior: smooth;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100vw;
-    background-image: linear-gradient(30deg, #FFC300 0%, #FFAF84 100%);
+    background-color: transparent;
     background-size: cover;
 
     .left-container {
@@ -326,6 +327,7 @@
 
                     .under-text {
                         padding: 5% 5%;
+
                         .title {
                             padding: 5% 0;
                         }
@@ -363,6 +365,11 @@
                 font-size: 1rem;
                 font-weight: bold;
                 cursor: pointer;
+
+                &:hover {
+                    transform: scale(1.05);
+                    box-shadow: 0.2rem 0.3rem 0.4rem rgba(0, 0, 0, 0.25);
+                }
             }
         }
     }

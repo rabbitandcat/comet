@@ -62,7 +62,7 @@
 <style lang="scss">
 .order-page {
     padding-right: 20%;
-    background-image: linear-gradient(30deg, #FFC300 0%, #FFAF84 100%);
+    background-color: transparent;
     width: 100%;
     height: 100vh;
     display: flex;
@@ -86,6 +86,7 @@
     }
 
     .right-container {
+        margin-right: 20%;
         box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.25);
         overflow: hidden;
         padding: 1% 2%;
@@ -173,6 +174,11 @@
                 font-size: 1rem;
                 font-weight: bold;
                 cursor: pointer;
+
+                &:hover {
+                    transform: scale(1.05);
+                    box-shadow: 0.2rem 0.3rem 0.4rem rgba(0, 0, 0, 0.25);
+                }
             }
         }
     }

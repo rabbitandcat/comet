@@ -1,7 +1,7 @@
 <template>
     <header class="top-bar">
         <div class="left-menu">
-            <div>关于我们</div>
+            <div class="about-us">关于我们</div>
         </div>
         <div class="logo">
             <img class="logo-icon" src="@/assets/svg/logo.svg" alt="">
@@ -25,8 +25,6 @@
 </script>
 
 <style lang="scss" scoped>
-
-
 .top-bar {
     overflow: hidden;
     width: 100%;
@@ -37,23 +35,27 @@
     background-color: transparent;
 
     .left-menu {
-        overflow: hidden;
+        // overflow: hidden;
         display: flex;
         justify-content: flex-start;
         align-items: center;
         width: 30rem;
         font-family: 'SiYuan';
 
+        .about-us {
+            &:hover {
+                transform: scale(1.2);
+            }
+        }
+
         div {
             font-size: 0.8rem;
             font-weight: 500;
             color: #000;
             cursor: pointer;
+
             &:first-child {
                 margin-right: 2rem;
-            }
-            &:hover {
-                text-decoration: underline;
             }
         }
     }
@@ -71,7 +73,7 @@
     }
 
     .right-menu {
-        overflow: hidden;
+        // overflow: hidden;
         display: flex;
         justify-content: flex-end;
         align-items: center;
@@ -87,19 +89,11 @@
             img {
                 padding: 0 1rem;
                 cursor: pointer;
+
+                &:hover {
+                    transform: scale(1.3);
+                }
             }
-
-            // .qq-icon {
-            //     width: 1rem;
-            // }
-
-            // .weixin-icon {
-            //     width: 1.3rem;
-            // }
-
-            // .weibo-icon {
-            //     width: 1.3rem;
-            // }
         }
 
         .cart-user {
@@ -114,14 +108,22 @@
 
             .cart-icon {
                 width: 1.5rem;
+
+                &:hover {
+                    transform: scale(1.3);
+                }
             }
 
             .user-icon {
                 margin-left: 1.5rem;
                 width: 1.1rem;
+
+                &:hover {
+                    transform: scale(1.3);
+                }
             }
         }
     }
-    
+
 }
 </style>
