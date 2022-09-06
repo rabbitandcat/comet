@@ -29,15 +29,15 @@
 
 .top-bar {
     overflow: hidden;
-    width: 100vw;
+    width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
-    height: 6rem;
-    padding: 0 5rem;
+    height: 12vh;
     background-color: transparent;
 
     .left-menu {
+        overflow: hidden;
         display: flex;
         justify-content: flex-start;
         align-items: center;
@@ -71,6 +71,7 @@
     }
 
     .right-menu {
+        overflow: hidden;
         display: flex;
         justify-content: flex-end;
         align-items: center;

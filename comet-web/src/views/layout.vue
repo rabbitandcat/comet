@@ -21,14 +21,14 @@ import HomePage from '@/views/HomePage/index.vue'
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    width: 100vw;
+    width: 100%;
     background-color: #fff;
     .header {
-        width: 100vw;
+        width: 100%;
         position: fixed;
     }
     .main {
-        width: 100vw;
+        width: 100%;
     }
 }
 </style>
