@@ -127,7 +127,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100vw;
+    width: 100%;
     background-image: linear-gradient(30deg, #FFC300 0%, #FFAF84 100%);
     background-size: cover;
 

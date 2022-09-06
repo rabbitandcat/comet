@@ -9,15 +9,19 @@
             <div class="nfc-setting">
                 <div class="nfc-num">
                     <p>设置您的NFC编码数量（定制数量）</p>
-                    <input type="text" class="num-input">
+                    <div class="search-bar">
+                        <input type="text" class="search-input">
+                    </div>
                 </div>
                 <div class="nfc-generate">
                     <p>生成您的NFC防伪编码</p>
-                    <input type="text" class="generate-input">
+                    <div class="search-bar">
+                        <input type="text" class="search-input">
+                    </div>
                     <button class="generate">生成</button>
                 </div>
                 <div class="customize">
-                    生成您的NFC防伪编码
+                    生成您的NFC客制化信息
                 </div>
             </div>
             <div class="bottom-container">
@@ -47,6 +51,7 @@
     align-items: center;
 
     .left-container {
+        margin-left: -10%;
         width: 30%;
         height: 50%;
         display: flex;
@@ -63,6 +68,7 @@
     }
 
     .right-container {
+        box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.25);
         overflow: hidden;
         padding: 1% 1.5%;
         border-radius: 1rem;
@@ -93,12 +99,34 @@
                     padding-right: 7.5%;
                 }
 
-                .num-input {
+
+                .search-bar {
+                    margin: 0 0 0 0;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 40%;
                     height: 80%;
-                    border-radius: 2rem;
-                    outline: none;
-                    border: none;
-                    background-color: rgba(0, 0, 0, 0.04);
+                    border-radius: 1rem;
+                    background-color: rgba(0, 0, 0, 0.047);
+
+                    .search-input {
+                        background-color: transparent;
+                        width: 85%;
+                        height: 80%;
+                        border: none;
+                        outline: none;
+                        font-size: 1rem;
+                        font-weight: bold;
+                        color: black;
+                        line-height: 1rem;
+
+                        &::placeholder {
+                            color: white;
+
+                        }
+                    }
+
                 }
             }
 
@@ -114,12 +142,33 @@
                     // padding-right: 20%;
                 }
 
-                .generate-input {
+                .search-bar {
+                    margin: 0 0 0 0;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 40%;
                     height: 80%;
-                    border-radius: 2rem;
-                    outline: none;
-                    border: none;
-                    background-color: rgba(0, 0, 0, 0.04);
+                    border-radius: 1rem;
+                    background-color: rgba(0, 0, 0, 0.047);
+
+                    .search-input {
+                        background-color: transparent;
+                        width: 85%;
+                        height: 80%;
+                        border: none;
+                        outline: none;
+                        font-size: 1rem;
+                        font-weight: bold;
+                        color: #fff;
+                        line-height: 1rem;
+
+                        &::placeholder {
+                            color: white;
+
+                        }
+                    }
+
                 }
 
                 .generate {
@@ -158,6 +207,7 @@
 
                 img {
                     margin-right: 30%;
+                    cursor: pointer;
                 }
             }
 

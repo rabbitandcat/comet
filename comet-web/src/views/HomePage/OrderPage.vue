@@ -12,25 +12,39 @@
             </div>
             <form action="" class="form">
                 <p class="name">
+                    <span style="color: red">*</span>
                     姓名
                 </p>
-                <input type="text" class="name-input">
+                <div class="search-bar">
+                    <input type="text" class="search-input">
+                </div>
                 <p class="area">
+                    <span style="color: red">*</span>
                     省市区
                 </p>
-                <input type="text" class="area-input">
+                <div class="search-bar">
+                    <input type="text" class="search-input">
+                </div>
                 <p class="position">
+                    <span style="color: red">*</span>
                     详细地址
                 </p>
-                <input type="text" class="position-input">
+                <div class="search-bar">
+                    <input type="text" class="search-input">
+                </div>
                 <p class="company">
                     公司名称
                 </p>
-                <input type="text" class="company-input">
+                <div class="search-bar">
+                    <input type="text" class="search-input">
+                </div>
                 <p class="phone">
+                    <span style="color: red">*</span>
                     电话号码
                 </p>
-                <input type="text" class="phone-input">
+                <div class="search-bar">
+                    <input type="text" class="search-input">
+                </div>
             </form>
             <div class="cart">
                 <button class="btn-cart">
@@ -47,6 +61,7 @@
 
 <style lang="scss">
 .order-page {
+    padding-right: 20%;
     background-image: linear-gradient(30deg, #FFC300 0%, #FFAF84 100%);
     width: 100%;
     height: 100vh;
@@ -55,7 +70,7 @@
     align-items: center;
 
     .left-container {
-        width: 30%;
+        width: 40%;
         height: 50%;
         display: flex;
         justify-content: center;
@@ -71,6 +86,7 @@
     }
 
     .right-container {
+        box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.25);
         overflow: hidden;
         padding: 1% 2%;
         border-radius: 1rem;
@@ -83,11 +99,13 @@
         background-color: #fff;
 
         .title {
-            height: 20%;
+            height: 15%;
             width: 100%;
             display: flex;
             justify-content: flex-start;
             align-items: center;
+            margin-left: 10%;
+            margin-bottom: -10%;
 
             img {
                 width: 7%;
@@ -101,20 +119,41 @@
         }
 
         .form {
+            height: 60%;
             padding-left: 10%;
             font-weight: bold;
 
             p {
-                padding: 2% 0;
+                padding: 2% 1%;
             }
 
-            input {
-                width: 50%;
-                padding: 2% 0;
-                border-radius: 2rem;
-                outline: none;
-                border: none;
-                background-color: rgba(0, 0, 0, 0.04);
+            .search-bar {
+                margin: 0 0 0 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 60%;
+                height: 10%;
+                border-radius: 1rem;
+                background-color: rgba(0, 0, 0, 0.047);
+
+                .search-input {
+                    background-color: transparent;
+                    width: 85%;
+                    height: 80%;
+                    border: none;
+                    outline: none;
+                    font-size: 1rem;
+                    font-weight: bold;
+                    color: black;
+                    line-height: 1rem;
+
+                    &::placeholder {
+                        color: #D3D3D3;
+
+                    }
+                }
+
             }
         }
 
@@ -124,7 +163,7 @@
             align-items: center;
 
             button {
-                padding: 1% 2%;
+                padding: 2% 3%;
                 box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.25);
                 text-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.25);
                 border: none;
