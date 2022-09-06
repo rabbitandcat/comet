@@ -68,6 +68,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    // margin: 50vh 0;
 
     .left-container {
         width: 40%;

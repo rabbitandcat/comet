@@ -47,19 +47,32 @@ const debounce = (func: Function, wait: number = 1000) => {
 // 滚动监听
 const onScrollHandle = (e: any): void => {
     let currentScroll = document.documentElement.scrollTop || document.body.scrollTop
+    const homePage: any = document.querySelector('.home-page')
     const patternPage: any = document.getElementsByClassName('pattern-page')[0]
     const previewPage: any = document.getElementsByClassName('preview-page')[0]
     const nfcPage: any = document.getElementsByClassName('nfc-page')[0]
     const orderPage: any = document.getElementsByClassName('order-page')[0]
     if (e.wheelDelta < 0) {
-        if (currentScroll > 350 && currentScroll < 720) {
+        if (Math.abs(currentScroll - homePage.offsetTop) < 100 && currentScroll < patternPage.offsetTop) {
             scrollTo(0, patternPage.offsetTop)
-        } else if (currentScroll < 1440 && currentScroll > 1000) {
+        } else if (currentScroll < previewPage.offsetTop && Math.abs(currentScroll - patternPage.offsetTop) < 100) {
             scrollTo(0, previewPage.offsetTop)
-        } else if (currentScroll < 2160 && currentScroll > 1720) {
+        } else if (Math.abs(currentScroll - previewPage.offsetTop) < 100 && currentScroll < nfcPage.offsetTop) {
             scrollTo(0, nfcPage.offsetTop)
-        } else if (currentScroll < 2880 && currentScroll > 2400) {
+        } else if (Math.abs(currentScroll - nfcPage.offsetTop) < 100 && currentScroll < orderPage.offsetTop) {
             scrollTo(0, orderPage.offsetTop)
+        }
+    }
+
+    if (e.wheelDelta > 0) {
+        if (Math.abs(currentScroll - patternPage.offsetTop) < 100 && currentScroll > homePage.offsetTop) {
+            scrollTo(0, homePage.offsetTop)
+        } else if (currentScroll > patternPage.offsetTop && Math.abs(currentScroll - previewPage.offsetTop) < 100) {
+            scrollTo(0, patternPage.offsetTop)
+        } else if (Math.abs(currentScroll - nfcPage.offsetTop) < 100 && currentScroll > previewPage.offsetTop) {
+            scrollTo(0, previewPage.offsetTop)
+        } else if (Math.abs(currentScroll - orderPage.offsetTop) < 100 && currentScroll > nfcPage.offsetTop) {
+            scrollTo(0, nfcPage.offsetTop)
         }
     }
 }
@@ -83,7 +96,7 @@ onMounted(() => {
     .detail-pages {
         background-image: linear-gradient(180deg, #F8B62B 0%, #FFAF84 100%);
         width: 100vw;
-        height: 400vh;
+        height: 450vh;
     }
 }
 </style>

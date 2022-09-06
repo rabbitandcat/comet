@@ -242,6 +242,7 @@
     width: 100vw;
     background-color: transparent;
     background-size: cover;
+    margin: 25vh 0 25vh 0;
 
     .left-container {
         display: flex;

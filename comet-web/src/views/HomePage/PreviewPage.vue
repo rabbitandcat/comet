@@ -123,6 +123,7 @@
 
 <style lang="scss">
 .preview-page {
+    margin: 0 0 0 0;
     height: 100vh;
     display: flex;
     justify-content: space-between;
@@ -162,7 +163,7 @@
                 .search-input {
                     background-color: transparent;
                     width: 85%;
-                    height: 80%;
+                    height: 40%;
                     border: none;
                     outline: none;
                     font-size: 1rem;

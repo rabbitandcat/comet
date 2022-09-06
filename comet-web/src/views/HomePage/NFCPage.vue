@@ -49,6 +49,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 0;
 
     .left-container {
         margin-left: -10%;
