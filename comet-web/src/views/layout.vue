@@ -4,7 +4,7 @@
             <TopBar/>
         </div>
         <div class="main">
-            <HomePage/>
+            <router-view/>
         </div>
     </div>
 </template>

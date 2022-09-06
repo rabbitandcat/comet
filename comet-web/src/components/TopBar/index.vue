@@ -15,7 +15,7 @@
                 </div>
                 <div class="cart-user">
                     <img class="cart-icon" src="@/assets/svg/cart.svg" alt="">
-                    <img class="user-icon" src="@/assets/svg/user.svg" alt="">
+                    <img class="user-icon" @click="toUserPage" src="@/assets/svg/user.svg" alt="">
                 </div>
             </div>
         </header>
@@ -25,7 +25,11 @@
 <script lang='ts' setup>
 import { ref, onMounted, watch } from 'vue'
 import { useTopBar } from '@/store/topBar'
+import router from '@/router';
 const topBar = useTopBar()
+const toUserPage = () => {
+    router.push('/user')
+}
 topBar.topBarShow = true
 </script>
 
