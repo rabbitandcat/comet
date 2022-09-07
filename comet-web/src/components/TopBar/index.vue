@@ -1,11 +1,11 @@
 <template>
     <transition name="topbar">
-        <header class="top-bar" v-if="topBar.topBarShow">
+        <header class="top-bar" v-if="components.topBarShow">
             <div class="left-menu">
                 <div class="about-us">关于我们</div>
             </div>
             <div class="logo">
-                <img class="logo-icon" src="@/assets/svg/logo.svg" alt="">
+                <img @click="toHomePage" class="logo-icon" src="@/assets/svg/logo.svg" alt="">
             </div>
             <div class="right-menu">
                 <div class="share">
@@ -24,16 +24,19 @@
 
 <script lang='ts' setup>
 import { ref, onMounted, watch } from 'vue'
-import { useTopBar } from '@/store/topBar'
+import { useComponents } from '@/store/components'
 import router from '@/router';
-const topBar = useTopBar()
+const components = useComponents()
 const toUserPage = () => {
     router.push('/user')
 }
 const toCartPage = () => {
     router.push('/cart')
 }
-topBar.topBarShow = true
+const toHomePage = () => {
+    router.push('/')
+}
+components.topBarShow = true
 </script>
 
 <style lang="scss" scoped>

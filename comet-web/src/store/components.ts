@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
-export const useTopBar = defineStore('breadCrumb', {
+export const useComponents = defineStore('components', {
     state: () => {
         const topBarShow:any = ref(true)
 

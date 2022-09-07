@@ -13,7 +13,7 @@
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 汇星为您提供NFT的实体化T恤定制服务，现在开始拥有一件独一无二的私人T恤！
             </div>
-            <button class="customize" v-on:click="topBar.topBarShow = !topBar.topBarShow">
+            <button @click="scrollToStep1" class="customize" v-on:click="components.topBarShow = !components.topBarShow">
                 开始定制！
             </button>
         </div>
@@ -21,8 +21,13 @@
 </template>
 
 <script lang='ts' setup>
-import { useTopBar } from '@/store/topBar';
-const topBar = useTopBar()
+import { useComponents } from '@/store/components';
+const components = useComponents()
+
+const scrollToStep1 = () => {
+    const patternPage: any = document.getElementsByClassName('pattern-page')[0]
+    window.scrollTo(0, patternPage.offsetTop)
+}
 </script>
 
 <style lang="scss">

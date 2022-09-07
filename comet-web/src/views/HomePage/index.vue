@@ -17,9 +17,9 @@ import PreviewPage from '@/views/HomePage/PreviewPage.vue'
 import NFCPage from '@/views/HomePage/NFCPage.vue'
 import OrderPage from '@/views/HomePage/OrderPage.vue'
 import { onMounted, watch, ref } from 'vue'
-import { useTopBar } from '@/store/topBar'
+import { useComponents } from '@/store/components'
 
-const topBar = useTopBar()
+const components = useComponents()
 
 // 防抖
 const debounce = (func: Function, wait: number = 1000) => {
@@ -32,6 +32,8 @@ const debounce = (func: Function, wait: number = 1000) => {
     }
 }
 
+
+
 // 滚动监听
 const onScrollHandle = (e: any): void => {
     let currentScroll = document.documentElement.scrollTop || document.body.scrollTop
@@ -41,7 +43,7 @@ const onScrollHandle = (e: any): void => {
     const nfcPage: any = document.getElementsByClassName('nfc-page')[0]
     const orderPage: any = document.getElementsByClassName('order-page')[0]
     if (e.wheelDelta < 0) {
-        topBar.topBarShow = false;
+        components.topBarShow = false;
         if (Math.abs(currentScroll - homePage.offsetTop) < 100 && currentScroll < patternPage.offsetTop) {
             scrollTo(0, patternPage.offsetTop)
         } else if (currentScroll < previewPage.offsetTop && Math.abs(currentScroll - patternPage.offsetTop) < 100) {
@@ -50,12 +52,12 @@ const onScrollHandle = (e: any): void => {
             scrollTo(0, nfcPage.offsetTop)
         } else if (Math.abs(currentScroll - nfcPage.offsetTop) < 100 && currentScroll < orderPage.offsetTop) {
             scrollTo(0, orderPage.offsetTop)
-            topBar.topBarShow = true
+            components.topBarShow = true
         }
     }
 
     if (e.wheelDelta > 0) {
-        topBar.topBarShow = true
+        components.topBarShow = true
         if (Math.abs(currentScroll - patternPage.offsetTop) < 100 && currentScroll > homePage.offsetTop) {
             scrollTo(0, homePage.offsetTop)
         } else if (currentScroll > patternPage.offsetTop && Math.abs(currentScroll - previewPage.offsetTop) < 100) {
@@ -71,7 +73,12 @@ const onScrollHandle = (e: any): void => {
 
 // 组件挂载时开始监听鼠标滚轮事件
 onMounted(() => {
-    window.addEventListener('wheel', debounce(onScrollHandle, 1));
+    window.addEventListener('wheel', debounce(onScrollHandle, 1),{passive: false});
+    const homePage: any = document.querySelector('.home-page')
+    homePage.onmousewheel = (e: any) => {
+        return false
+    }
+
 })
 
 </script>
