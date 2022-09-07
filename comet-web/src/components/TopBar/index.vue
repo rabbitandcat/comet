@@ -14,7 +14,7 @@
                     <img class="weibo-icon" src="@/assets/svg/weibo.svg" alt="">
                 </div>
                 <div class="cart-user">
-                    <img class="cart-icon" src="@/assets/svg/cart.svg" alt="">
+                    <img class="cart-icon" @click="toCartPage" src="@/assets/svg/cart.svg" alt="">
                     <img class="user-icon" @click="toUserPage" src="@/assets/svg/user.svg" alt="">
                 </div>
             </div>
@@ -29,6 +29,9 @@ import router from '@/router';
 const topBar = useTopBar()
 const toUserPage = () => {
     router.push('/user')
+}
+const toCartPage = () => {
+    router.push('/cart')
 }
 topBar.topBarShow = true
 </script>

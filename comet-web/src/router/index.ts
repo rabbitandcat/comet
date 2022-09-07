@@ -17,9 +17,18 @@ export const UserRoute: RouteRecordRaw = {
         title:'UserPage'
     }
 }
+export const CartRoute: RouteRecordRaw = {
+    path:'/cart',
+    component: () => import('@/views/Cart/index.vue'),
+    children: [],
+    meta: {
+        title:'CartPage'
+    }
+}
+
 
 // 无需验证权限的普通路由
-export const commonRouter: any[] = [HomeRoute, UserRoute]
+export const commonRouter: any[] = [HomeRoute, UserRoute, CartRoute]
 
 const router = createRouter({
     history: createWebHistory(''),
