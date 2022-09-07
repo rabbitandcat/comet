@@ -222,14 +222,17 @@
             </div>
             <div class="pattern-bottom">
                 <p class="details-fabric">不了解面料？</p>
-                <button class="next-step">下一步</button>
+                <button @click="scrollToStep2" class="next-step">下一步</button>
             </div>
         </div>
     </section>
 </template>
 
 <script lang='ts' setup>
-
+const scrollToStep2 = () => {
+    const previewPage: any = document.getElementsByClassName('preview-page')[0]
+    window.scrollTo(0, previewPage.offsetTop)
+}
 </script>
 
 <style lang="scss">

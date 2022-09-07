@@ -6,7 +6,7 @@
 
 <script setup lang="ts">
 import '@/style/index.scss'
-import Layout from '@/views/layout.vue'
+import Layout from '@/views/index.vue'
 </script>
 
 <style scoped lang="scss">

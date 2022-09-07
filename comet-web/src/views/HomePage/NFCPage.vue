@@ -18,7 +18,7 @@
                     <div class="search-bar">
                         <input type="text" class="search-input">
                     </div>
-                    <button class="generate">生成</button>
+                    <button @click="handleGenerate" class="generate">生成</button>
                 </div>
                 <div class="customize">
                     生成您的NFC客制化信息
@@ -29,15 +29,47 @@
                     <img src="@/assets/svg/smile.svg" alt="">
                     <img src="@/assets/svg/image.svg" alt="">
                 </div>
-                <button class="complete">
+                <button @click="handleComplete" class="complete">
                     完成
                 </button>
+                <MessageBox :show="showBox" :showHeaderandFooter="false" @confirm="confirm">
+                    <p>{{message}}</p>
+                </MessageBox>
             </div>
         </div>
     </section>
 </template>
 
 <script lang='ts' setup>
+import MessageBox from '@/components/MessageBox/index.vue'
+import { ref } from 'vue'
+let timer = 0
+let message = ref('')
+const showBox = ref(false)
+const handleComplete = () => {
+    message.value = 'NFT导入成功'
+    timer = setTimeout(() => {
+        showBox.value = false
+        timer = 0
+    }, 3000)
+    showBox.value = true
+}
+
+const handleGenerate = () => {
+    message.value = '生成成功'
+    timer = setTimeout(() => {
+        showBox.value = false
+        timer = 0
+    }, 3000)
+    showBox.value = true
+}
+
+
+const confirm = () => {
+    showBox.value = false
+    clearTimeout(timer)
+}
+
 
 </script>
 

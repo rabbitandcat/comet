@@ -107,7 +107,7 @@
                 </ul>
             </div>
             <div class="btn-area"></div>
-            <button class="next-step">
+            <button @click="scrollToStep3" class="next-step">
                 下一步
             </button>
             <a class="how-to-choose">
@@ -118,7 +118,10 @@
 </template>
 
 <script lang='ts' setup>
-
+const scrollToStep3 = () => {
+    const nfcPage: any = document.getElementsByClassName('nfc-page')[0]
+    window.scrollTo(0, nfcPage.offsetTop)
+}
 </script>
 
 <style lang="scss">

@@ -47,16 +47,35 @@
                 </div>
             </form>
             <div class="cart">
-                <button class="btn-cart">
+                <button @click="handleAddToCart" class="btn-cart">
                     加入购物车
                 </button>
             </div>
+            <MessageBox :show="showBox" :showHeaderandFooter="false" @confirm="confirm">
+                <p>{{message}}</p>
+            </MessageBox>
         </div>
     </section>
 </template>
 
 <script lang='ts' setup>
-
+import MessageBox from '@/components/MessageBox/index.vue'
+import { ref } from 'vue'
+let timer = 0
+let message = ref('')
+const showBox = ref(false)
+const handleAddToCart = () => {
+    message.value = '加入购物车成功'
+    timer = setTimeout(() => {
+        showBox.value = false
+        timer = 0
+    }, 3000)
+    showBox.value = true
+}
+const confirm = () => {
+    showBox.value = false
+    clearTimeout(timer)
+}
 </script>
 
 <style lang="scss">

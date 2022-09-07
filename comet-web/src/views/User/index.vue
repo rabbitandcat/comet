@@ -36,7 +36,7 @@
                         <div class="search-bar">
                             <input type="text" class="search-input">
                         </div>
-                        <button class="import">
+                        <button @click="handleImport" class="import">
                             导入
                         </button>
                     </div>
@@ -59,18 +59,53 @@
                 </li>
             </ul>
         </div>
+        <MessageBox :show="showBox" :showHeaderandFooter="false" @confirm="confirm">
+            <p>{{message}}</p>
+        </MessageBox>
     </section>
 </template>
 
 <script lang='ts' setup>
 import { useUser } from '@/store/user'
+import MessageBox from '@/components/MessageBox/index.vue'
+import { ref } from 'vue'
 const User = useUser()
+
+let timer = 0
+let message = ref('')
+const showBox = ref(false)
+
+const confirm = () => {
+    showBox.value = false
+    clearTimeout(timer)
+}
 
 const handleLogout = () => {
     User.isLogin = false
+    message.value = '退出成功'
+    timer = setTimeout(() => {
+        showBox.value = false
+        timer = 0
+    }, 3000)
+    showBox.value = true
 }
 const handleLogin = () => {
     User.isLogin = true
+    message.value = '登录成功'
+    timer = setTimeout(() => {
+        showBox.value = false
+        timer = 0
+    }, 3000)
+    showBox.value = true
+}
+
+const handleImport = () => {
+    message.value = '导入成功'
+    timer = setTimeout(() => {
+        showBox.value = false
+        timer = 0
+    }, 3000)
+    showBox.value = true
 }
 </script>
 
@@ -119,6 +154,7 @@ const handleLogin = () => {
                         height: 3rem;
                         border-radius: 50%;
                     }
+
                     min-height: 8vh;
                 }
 
@@ -150,6 +186,7 @@ const handleLogin = () => {
                 font-weight: bold;
                 cursor: pointer;
             }
+
             .log-in {
                 width: 20%;
                 height: 50%;
