@@ -1,7 +1,7 @@
 <template>
     <section class="user-page">
         <div class="user-page-box">
-            <div class="user-bar">
+            <div class="user-bar" v-if="User.isLogin">
                 <div class="left-container">
                     <div class="avatar-container">
                         <img src="@/assets/img/avatar.png" alt="">
@@ -11,8 +11,22 @@
                         <p class="phone">1895078923</p>
                     </div>
                 </div>
-                <button class="log-out">
+                <button @click="handleLogout" class="log-out">
                     退出登录
+                </button>
+            </div>
+            <div class="user-bar" v-else>
+                <div class="left-container">
+                    <div class="avatar-container">
+                        <div class="null-img"></div>
+                    </div>
+                    <div class="name-phone">
+                        <p class="name">未登录</p>
+                        <p class="phone"></p>
+                    </div>
+                </div>
+                <button @click="handleLogin" class="log-in">
+                    登录
                 </button>
             </div>
             <ul class="user-info">
@@ -49,7 +63,15 @@
 </template>
 
 <script lang='ts' setup>
+import { useUser } from '@/store/user'
+const User = useUser()
 
+const handleLogout = () => {
+    User.isLogin = false
+}
+const handleLogin = () => {
+    User.isLogin = true
+}
 </script>
 
 <style lang="scss">
@@ -85,9 +107,20 @@
 
             .left-container {
                 width: 50%;
+                // height: 50%;
                 display: flex;
                 justify-content: center;
                 align-items: center;
+
+                .avatar-container {
+                    .null-img {
+                        background-color: #D3D3D3;
+                        width: 3rem;
+                        height: 3rem;
+                        border-radius: 50%;
+                    }
+                    min-height: 8vh;
+                }
 
                 .name-phone {
                     width: 70%;
@@ -112,6 +145,17 @@
                 border-radius: 0.3rem;
                 border: none;
                 background-color: #FA5151;
+                color: #fff;
+                font-size: 0.8rem;
+                font-weight: bold;
+                cursor: pointer;
+            }
+            .log-in {
+                width: 20%;
+                height: 50%;
+                border-radius: 0.3rem;
+                border: none;
+                background-color: #00B578;
                 color: #fff;
                 font-size: 0.8rem;
                 font-weight: bold;

@@ -11,7 +11,6 @@
 
 <script lang='ts' setup>
 import TopBar from '@/components/TopBar/index.vue'
-import HomePage from '@/views/HomePage/index.vue'
 </script>
 
 <style lang="scss" scoped>
