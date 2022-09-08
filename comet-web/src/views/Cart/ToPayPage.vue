@@ -309,6 +309,7 @@ const checkboxSelected = ref(false)
         }
 
         .total-price-list {
+            margin-top: 2%;
             width: 100%;
             height: 30%;
             display: flex;
@@ -324,7 +325,7 @@ const checkboxSelected = ref(false)
             .total-price-price {
                 font-size: 14px;
                 color: #333333;
-                margin-right: 13%;
+                margin-right: 12%;
 
                 .integer {
                     font-size: 1.5rem;

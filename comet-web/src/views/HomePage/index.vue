@@ -75,9 +75,16 @@ const onScrollHandle = (e: any): void => {
 onMounted(() => {
     window.addEventListener('wheel', debounce(onScrollHandle, 1),{passive: false});
     const homePage: any = document.querySelector('.home-page')
-    homePage.onmousewheel = (e: any) => {
-        return false
-    }
+    const patternPage: any = document.getElementsByClassName('pattern-page')[0]
+    const previewPage: any = document.getElementsByClassName('preview-page')[0]
+    const nfcPage: any = document.getElementsByClassName('nfc-page')[0]
+    const orderPage: any = document.getElementsByClassName('order-page')[0]
+    let pageList =[homePage, patternPage, previewPage, nfcPage, orderPage]
+    pageList.forEach((page: any) => {
+        page.onmousewheel = (e: any) => {
+            return false
+        }
+    })
 
 })
 
