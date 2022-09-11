@@ -59,6 +59,37 @@
                 </li>
             </ul>
         </div>
+        <div class="user-login-box">
+            <div class="user-login-container">
+                <div class="close-icon-container">
+                    <img src="@/assets/svg/close.svg" alt="">
+                </div>
+                <p class="title">账号登录</p>
+                <div class="account-input-container">
+                    <img src="@/assets/svg/account.svg" alt="">
+                    <div class="search-bar">
+                        <input type="text" class="search-input" placeholder="请输入账号">
+                    </div>
+                </div>
+                <div class="password-input-container">
+                    <img src="@/assets/svg/key.svg" alt="">
+                    <div class="search-bar">
+                        <input type="text" class="search-input" placeholder="请输入密码">
+                    </div>
+                </div>
+                <div class="captcha-input-container">
+                    <img class="keysvg" src="@/assets/svg/key.svg" alt="">
+                    <div class="search-bar">
+                        <input type="text" class="search-input" placeholder="请输入验证码">
+                    </div>
+                    <div class="captcha-container">
+                        <img class="captcha" src="@/assets/img/captcha.png" alt="">
+                    </div>
+                </div>
+                <button class="btn-login">登 录</button>
+                    <p class="toggle-register">注册</p>
+            </div>
+        </div>
         <MessageBox :show="showBox" :showHeaderandFooter="false" @confirm="confirm">
             <p>{{message}}</p>
         </MessageBox>
@@ -288,6 +319,207 @@ const handleImport = () => {
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
+            }
+        }
+    }
+
+    .user-login-box {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        z-index: 1000;
+
+        .user-login-container {
+            width: 30%;
+            height: 80%;
+            background-color: white;
+            border-radius: 0.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            .close-icon-container {
+                width: 90%;
+                height: 10%;
+                font-weight: bold;
+                margin-bottom: 5%;
+                display: flex;
+                justify-content: flex-end;
+                align-items: flex-start;
+                img {
+                    cursor: pointer;
+                }
+            }
+
+            .title {
+                font-size: 1.8rem;
+                font-weight: bolder;
+                margin-bottom: 5%;
+            }
+
+            .account-input-container {
+                height: 8%;
+                width: 80%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 2%;
+
+                .search-bar {
+                    margin-left: 5%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 90%;
+                    height: 80%;
+                    border-radius: 0.3rem;
+                    border: 1px solid rgba(0, 0, 0, 0.25);
+                    background-color: #fff;
+
+                    .search-input {
+                        background-color: transparent;
+                        width: 90%;
+                        height: 80%;
+                        border: none;
+                        outline: none;
+                        font-size: 1rem;
+                        font-weight: bold;
+                        color: rgba(0, 0, 0, 0.6);
+                        line-height: 1rem;
+
+                        &::placeholder {
+                            color: rgba(0, 0, 0, 0.16);
+
+                        }
+                    }
+
+                }
+            }
+            .password-input-container {
+                height: 8%;
+                width: 80%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 2%;
+                .search-bar {
+                    margin-left: 5%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 90%;
+                    height: 80%;
+                    border-radius: 0.3rem;
+                    border: 1px solid rgba(0, 0, 0, 0.25);
+                    background-color: #fff;
+
+                    .search-input {
+                        background-color: transparent;
+                        width: 90%;
+                        height: 80%;
+                        border: none;
+                        outline: none;
+                        font-size: 1rem;
+                        font-weight: bold;
+                        color: rgba(0, 0, 0, 0.6);
+                        line-height: 1rem;
+
+                        &::placeholder {
+                            color: rgba(0, 0, 0, 0.16);
+
+                        }
+                    }
+
+                }
+            }
+
+            .captcha-input-container {
+                height: 8%;
+                width: 80%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 2%;
+                .keysvg {
+                    visibility: hidden;
+                }
+                .search-bar {
+                    margin-left: 5%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 50%;
+                    height: 80%;
+                    border-radius: 0.3rem;
+                    border: 1px solid rgba(0, 0, 0, 0.25);
+                    background-color: #fff;
+
+                    .search-input {
+                        margin-left: 8%;
+                        background-color: transparent;
+                        width: 90%;
+                        height: 80%;
+                        border: none;
+                        outline: none;
+                        font-size: 1rem;
+                        font-weight: bold;
+                        color: black;
+                        line-height: 1rem;
+
+                        &::placeholder {
+                            color: rgba(0, 0, 0, 0.16);
+
+                        }
+                    }
+
+                }
+
+                .captcha-container {
+                    width: 40%;
+                    height: 80%;
+                    display: flex;
+                    justify-content: flex-end;
+                    align-items: center;
+                    .captcha {
+                        width: 80%;
+                        height: 100%;
+                        cursor: pointer;
+                    }
+                }
+            }
+
+            .btn-login {
+                margin-bottom: 5%;
+                width: 65%;
+                height: 8%;
+                border-radius: 0.3rem;
+                border: none;
+                background-color: rgba(0, 0, 0, 0.25);
+                color: #fff;
+                font-size: 1.2rem;
+                font-weight: bold;
+                cursor: pointer;
+                margin-top: 5%;
+                &:hover {
+                    background-color: rgba(0, 0, 0, 0.5);
+                }
+            }
+
+            .toggle-register {
+                font-size: 1rem;
+                font-weight: bold;
+                color: gray;
+                border-bottom: 1px solid gray;
+                cursor: pointer;
+                margin-bottom: 30%;
             }
         }
     }

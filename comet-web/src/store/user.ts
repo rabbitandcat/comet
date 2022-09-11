@@ -3,7 +3,7 @@ import { ref } from 'vue'
 
 export const useUser = defineStore('user', {
     state: () => {
-        const isLogin = ref(true)
+        const isLogin = ref(false)
 
         return {
             isLogin
