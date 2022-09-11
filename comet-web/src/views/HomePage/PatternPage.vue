@@ -10,211 +10,16 @@
         <div class="right-container">
             <div class="pattern-container">
                 <ul class="pattern-list">
-                    <li class="pattern-item">
+                    <li class="pattern-item" v-for="(pattern, key, index) in Order.patterns" :key="index">
                         <div class="img-container">
-                            <img src="@/assets/img/白半.png" alt="">
+                            <img :src="getImageUrl(pattern.url)" alt="" @click.stop="handleChoosePattern(pattern)">
                         </div>
                         <div class="under-text">
                             <div class="title">
-                                精梳棉圆领款
+                                {{pattern.name}}
                             </div>
                             <div class="price">
-                                ￥ 12
-                            </div>
-                        </div>
-                    </li>
-                    <li class="pattern-item">
-                        <div class="img-container">
-                            <img src="@/assets/img/白半.png" alt="">
-                        </div>
-                        <div class="under-text">
-                            <div class="title">
-                                精梳棉圆领款
-                            </div>
-                            <div class="price">
-                                ￥ 14
-                            </div>
-                        </div>
-                    </li>
-                    <li class="pattern-item">
-                        <div class="img-container">
-                            <img src="@/assets/img/白半.png" alt="">
-                        </div>
-                        <div class="under-text">
-                            <div class="title">
-                                精梳棉圆领款
-                            </div>
-                            <div class="price">
-                                ￥
-                            </div>
-                        </div>
-                    </li>
-                    <li class="pattern-item">
-                        <div class="img-container">
-                            <img src="@/assets/img/白半.png" alt="">
-                        </div>
-                        <div class="under-text">
-                            <div class="title">
-                                精梳棉圆领款
-                            </div>
-                            <div class="price">
-                                ￥
-                            </div>
-                        </div>
-                    </li>
-                    <li class="pattern-item">
-                        <div class="img-container">
-                            <img src="@/assets/img/白半.png" alt="">
-                        </div>
-                        <div class="under-text">
-                            <div class="title">
-                                精梳棉圆领款
-                            </div>
-                            <div class="price">
-                                ￥
-                            </div>
-                        </div>
-                    </li>
-                    <li class="pattern-item">
-                        <div class="img-container">
-                            <img src="@/assets/img/白半.png" alt="">
-                        </div>
-                        <div class="under-text">
-                            <div class="title">
-                                精梳棉圆领款
-                            </div>
-                            <div class="price">
-                                ￥
-                            </div>
-                        </div>
-                    </li>
-                    <li class="pattern-item">
-                        <div class="img-container">
-                            <img src="@/assets/img/白半.png" alt="">
-                        </div>
-                        <div class="under-text">
-                            <div class="title">
-                                精梳棉圆领款
-                            </div>
-                            <div class="price">
-                                ￥
-                            </div>
-                        </div>
-                    </li>
-                    <li class="pattern-item">
-                        <div class="img-container">
-                            <img src="@/assets/img/白半.png" alt="">
-                        </div>
-                        <div class="under-text">
-                            <div class="title">
-                                精梳棉圆领款
-                            </div>
-                            <div class="price">
-                                ￥
-                            </div>
-                        </div>
-                    </li>
-                    <li class="pattern-item">
-                        <div class="img-container">
-                            <img src="@/assets/img/白半.png" alt="">
-                        </div>
-                        <div class="under-text">
-                            <div class="title">
-                                精梳棉圆领款
-                            </div>
-                            <div class="price">
-                                ￥
-                            </div>
-                        </div>
-                    </li>
-                    <li class="pattern-item">
-                        <div class="img-container">
-                            <img src="@/assets/img/白半.png" alt="">
-                        </div>
-                        <div class="under-text">
-                            <div class="title">
-                                精梳棉圆领款
-                            </div>
-                            <div class="price">
-                                ￥
-                            </div>
-                        </div>
-                    </li>
-                    <li class="pattern-item">
-                        <div class="img-container">
-                            <img src="@/assets/img/白半.png" alt="">
-                        </div>
-                        <div class="under-text">
-                            <div class="title">
-                                精梳棉圆领款
-                            </div>
-                            <div class="price">
-                                ￥
-                            </div>
-                        </div>
-                    </li>
-                    <li class="pattern-item">
-                        <div class="img-container">
-                            <img src="@/assets/img/白半.png" alt="">
-                        </div>
-                        <div class="under-text">
-                            <div class="title">
-                                精梳棉圆领款
-                            </div>
-                            <div class="price">
-                                ￥
-                            </div>
-                        </div>
-                    </li>
-                    <li class="pattern-item">
-                        <div class="img-container">
-                            <img src="@/assets/img/白半.png" alt="">
-                        </div>
-                        <div class="under-text">
-                            <div class="title">
-                                精梳棉圆领款
-                            </div>
-                            <div class="price">
-                                ￥
-                            </div>
-                        </div>
-                    </li>
-                    <li class="pattern-item">
-                        <div class="img-container">
-                            <img src="@/assets/img/白半.png" alt="">
-                        </div>
-                        <div class="under-text">
-                            <div class="title">
-                                精梳棉圆领款
-                            </div>
-                            <div class="price">
-                                ￥
-                            </div>
-                        </div>
-                    </li>
-                    <li class="pattern-item">
-                        <div class="img-container">
-                            <img src="@/assets/img/白半.png" alt="">
-                        </div>
-                        <div class="under-text">
-                            <div class="title">
-                                精梳棉圆领款
-                            </div>
-                            <div class="price">
-                                ￥
-                            </div>
-                        </div>
-                    </li>
-                    <li class="pattern-item">
-                        <div class="img-container">
-                            <img src="@/assets/img/白半.png" alt="">
-                        </div>
-                        <div class="under-text">
-                            <div class="title">
-                                精梳棉圆领款
-                            </div>
-                            <div class="price">
-                                ￥
+                                ￥ {{pattern.price}}
                             </div>
                         </div>
                     </li>
@@ -225,14 +30,54 @@
                 <button @click="scrollToStep2" class="next-step">下一步</button>
             </div>
         </div>
+        <MessageBox :show="showBox" :showHeaderandFooter="false" @confirm="confirm">
+            <p>{{message}}</p>
+        </MessageBox>
     </section>
 </template>
 
 <script lang='ts' setup>
+import MessageBox from '@/components/MessageBox/index.vue'
+import { ref } from 'vue'
+
+import { useOrder } from '@/store/order'
+const Order = useOrder()
+
+
+// MessageBox 相关声明
+// 声明定时器
+let timer = 0
+// 声明弹出 Message 组件的消息
+let message = ref('')
+// 声明弹出 Message 组件显示状态
+const showBox = ref(false)
+// emit 事件
+const confirm = () => {
+    showBox.value = false
+    clearTimeout(timer)
+}
+
+const getImageUrl = (name: any) => {
+    return new URL(`../../assets/img/${name}.png`, import.meta.url).href
+}
+
+
+const handleChoosePattern = (pattern: any) => {
+    message.value = `您选择了${pattern.name}`
+    timer = setTimeout(() => {
+        showBox.value = false
+        timer = 0
+    }, 3000)
+    showBox.value = true
+}
+
+
 const scrollToStep2 = () => {
     const previewPage: any = document.getElementsByClassName('preview-page')[0]
     window.scrollTo(0, previewPage.offsetTop)
 }
+
+
 </script>
 
 <style lang="scss">
@@ -310,6 +155,7 @@ const scrollToStep2 = () => {
                 align-items: center;
 
                 .pattern-item {
+                    cursor: pointer;
                     font-weight: bold;
                     overflow: hidden;
                     width: 15vh;
@@ -318,6 +164,10 @@ const scrollToStep2 = () => {
                     margin: 1vh 2vh;
                     border-radius: 0.5rem;
                     box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.25);
+
+                    &:hover {
+                        box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.5);
+                    }
 
                     .img-container {
                         height: 70%;
