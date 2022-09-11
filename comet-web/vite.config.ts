@@ -11,6 +11,14 @@ export default defineConfig({
     }
   },
   server: {
-    open: true
+    open: true,
+    port: 9999,
+    proxy: {
+      '/haha': {
+        target: 'http://localhost:8080/api/',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/haha/, '')
+      },
+    }
   }
 })
