@@ -166,7 +166,7 @@ const scrollToStep3 = () => {
                 .search-input {
                     background-color: transparent;
                     width: 85%;
-                    height: 40%;
+                    height: 50%;
                     border: none;
                     outline: none;
                     font-size: 1rem;

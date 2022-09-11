@@ -6,27 +6,16 @@
                 <p class="price-select">选择</p>
             </div>
             <ul class="cart-item-list">
-                <li class="cart-item">
+                <li class="cart-item" v-for="(item, key, index) in Order.cartInfo" :key="index">
                     <div class="left-container">
-                        <p class="cart-item-name">精梳棉圆领款 丝网印</p>
-                        <p class="cart-item-num">x1</p>
+                        <p class="cart-item-name">{{item.patternName}} {{item.textilePriting}}</p>
+                        <p class="cart-item-num">x{{item.count}}</p>
                     </div>
                     <div class="right-container">
-                        <div class="cart-item-price">￥ 42.00</div>
-                        <div class="cart-item-price-num">x1</div>
-                        <div class="cart-item-checkbox" :class="{checkboxSelectedStyle: checkboxSelected}"
-                            @click="checkboxSelected = !checkboxSelected"></div>
-                    </div>
-                </li>
-                <li class="cart-item">
-                    <div class="left-container">
-                        <p class="cart-item-name">运动速干款 直喷</p>
-                        <p class="cart-item-num">x5</p>
-                    </div>
-                    <div class="right-container">
-                        <div class="cart-item-price">￥ 42.00</div>
-                        <div class="cart-item-price-num">x5</div>
-                        <div class="cart-item-checkbox"></div>
+                        <div class="cart-item-price">￥ {{item.price}}</div>
+                        <div class="cart-item-price-num">x {{item.count}}</div>
+                        <div class="cart-item-checkbox" :class="{checkboxSelectedStyle: item.isSelected}"
+                            @click="handleSelect(item)"></div>
                     </div>
                 </li>
             </ul>
@@ -56,7 +45,7 @@
             </div>
             <div class="total-price-list">
                 <p class="total-price-title">总计费用</p>
-                <div class="total-price-price">￥ <span class="integer">62</span>.00</div>
+                <div class="total-price-price">￥ <span class="integer">{{Order.totalPrice}}</span>.00</div>
             </div>
         </div>
         <div class="pay-methods">
@@ -83,7 +72,21 @@
 
 <script lang='ts' setup>
 import { ref } from 'vue'
-const checkboxSelected = ref(false)
+import { useOrder } from '@/store/order';
+
+const Order = useOrder();
+
+const handleSelect = (item: any) => {
+    item.isSelected = !item.isSelected;
+    Order.totalPrice = 20
+    Order.cartInfo.forEach(item => {
+        if (item.isSelected) {
+            Order.totalPrice += item.price * item.count;
+        }
+    })
+}
+
+
 </script>
 
 <style lang="scss">
