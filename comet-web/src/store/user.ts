@@ -6,6 +6,8 @@ export const useUser = defineStore('user', {
         const isLogin = ref(false)
         const isLoginBoxShow = ref(false)
         const isRegisterBoxShow = ref(false)
+        const isPhoneBoxShow = ref(false)
+        const isEmailBoxShow = ref(false)
         const currentUsername = ref('')
         const currentPhone = ref('')
         const currentEmail = ref('')
@@ -14,6 +16,8 @@ export const useUser = defineStore('user', {
             isLogin,
             isLoginBoxShow,
             isRegisterBoxShow,
+            isPhoneBoxShow,
+            isEmailBoxShow,
             currentUsername,
             currentPhone,
             currentEmail

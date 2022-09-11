@@ -45,19 +45,23 @@
                     <p class="title">
                         绑定手机
                     </p>
-                    <p class="phone">
-                        {{ User.currentPhone }}
-                    </p>
-                    <button>绑定</button>
+                    <div class="right-container">
+                        <p class="phone">
+                            {{ User.currentPhone }}
+                        </p>
+                        <button  @click="handleBindPhone">绑定</button>
+                    </div>
                 </li>
                 <li class="user-email">
                     <p class="title">
                         绑定邮箱
                     </p>
-                    <p class="phone">
-                        {{ User.currentEmail}}
-                    </p>
-                    <button>绑定</button>
+                    <div class="right-container">
+                        <p class="phone">
+                            {{ User.currentEmail}}
+                        </p>
+                        <button  @click="handleBindEmail">绑定</button>
+                    </div>
                 </li>
             </ul>
         </div>
@@ -123,6 +127,60 @@
                 <p class="toggle-login" @click="handleToggleToLogin">登录</p>
             </div>
         </div>
+        <div class="user-phone-box" v-if="User.isPhoneBoxShow">
+            <div class="user-phone-container">
+                <div class="close-icon-container">
+                    <img src="@/assets/svg/close.svg" alt="" @click="handlePhoneBoxClose">
+                </div>
+                <p class="title">手机绑定</p>
+                <div class="account-input-container">
+                    <img src="@/assets/svg/account.svg" alt="">
+                    <div class="search-bar">
+                        <input type="text" class="search-input" placeholder="请输入账号" v-model="phoneAccount">
+                    </div>
+                </div>
+                <div class="password-input-container">
+                    <img src="@/assets/svg/key.svg" alt="">
+                    <div class="search-bar">
+                        <input type="text" class="search-input" placeholder="请输入密码" v-model="phonePassword">
+                    </div>
+                </div>
+                <div class="phone-input-container">
+                    <img class="keysvg" src="@/assets/svg/key.svg" alt="">
+                    <div class="search-bar">
+                        <input type="text" class="search-input" placeholder="请输入新的手机号" v-model="phoneNumber">
+                    </div>
+                </div>
+                <button class="btn-phone" @click="handlePhoneInfoSubmit">绑定</button>
+            </div>
+        </div>
+        <div class="user-email-box" v-if="User.isEmailBoxShow">
+            <div class="user-email-container">
+                <div class="close-icon-container">
+                    <img src="@/assets/svg/close.svg" alt="" @click="handleEmailBoxClose">
+                </div>
+                <p class="title">邮箱绑定</p>
+                <div class="account-input-container">
+                    <img src="@/assets/svg/account.svg" alt="">
+                    <div class="search-bar">
+                        <input type="text" class="search-input" placeholder="请输入账号" v-model="emailAccount">
+                    </div>
+                </div>
+                <div class="password-input-container">
+                    <img src="@/assets/svg/key.svg" alt="">
+                    <div class="search-bar">
+                        <input type="text" class="search-input" placeholder="请输入密码" v-model="emailPassword">
+                    </div>
+                </div>
+                <div class="email-input-container">
+                    <img src="@/assets/svg/key.svg" alt="" class="keysvg">
+                    <div class="search-bar">
+                        <input type="text" class="search-input" placeholder="请输入新的邮箱" v-model="email">
+                    </div>
+                </div>
+                <button class="btn-email" @click="handleEmailInfoSubmit">绑定</button>
+            </div>
+        </div>
         <MessageBox :show="showBox" :showHeaderandFooter="false" @confirm="confirm">
             <p>{{message}}</p>
         </MessageBox>
@@ -133,7 +191,7 @@
 import { useUser } from '@/store/user'
 import MessageBox from '@/components/MessageBox/index.vue'
 import { ref } from 'vue'
-import { register, login } from '@/api/user/user'
+import { register, login, bindPhone, bindEmail } from '@/api/user/user'
 import { registerUser, loginUser } from '@/api/types/user'
 const User = useUser()
 
@@ -323,6 +381,110 @@ const handleRegisterInfoSubmit = async () => {
     }
 }
 
+// phoneBox 相关
+let phoneAccount = ref('')
+let phonePassword = ref('')
+let phoneNumber = ref('')
+const handlePhoneBoxClose = () => {
+    User.isPhoneBoxShow = false
+    phoneAccount.value = ''
+    phonePassword.value = ''
+    phoneNumber.value = ''
+}
+// 提交手机号绑定信息
+const handlePhoneInfoSubmit = async () => {
+    const res = await bindPhone({
+        username: phoneAccount.value,
+        password: phonePassword.value,
+        phone: phoneNumber.value
+    })
+    if (res.status === 200) {
+        message.value = '绑定手机号成功'
+        timer = setTimeout(() => {
+            showBox.value = false
+            timer = 0
+        }, 3000)
+        showBox.value = true
+        User.isPhoneBoxShow = false
+        User.currentPhone = phoneNumber.value
+
+        phoneAccount.value = ''
+        phonePassword.value = ''
+        phoneNumber.value = ''
+    } else {
+        message.value = '绑定手机号失败'
+        timer = setTimeout(() => {
+            showBox.value = false
+            timer = 0
+        }, 3000)
+        showBox.value = true
+    }
+}
+const handleBindPhone = () => {
+    if(User.isLogin) {
+        User.isPhoneBoxShow = true
+    } else {
+        message.value = '请先登录'
+        timer = setTimeout(() => {
+            showBox.value = false
+            timer = 0
+        }, 3000)
+        showBox.value = true
+    }
+}
+
+// emailBox 相关
+let emailAccount = ref('')
+let emailPassword = ref('')
+let email = ref('')
+const handleEmailBoxClose = () => {
+    User.isEmailBoxShow = false
+    emailAccount.value = ''
+    emailPassword.value = ''
+    email.value = ''
+}
+// 提交邮箱绑定信息
+const handleEmailInfoSubmit = async () => {
+    const res = await bindEmail({
+        username: emailAccount.value,
+        password: emailPassword.value,
+        email: email.value
+    })
+    if (res.status === 200) {
+        message.value = '绑定邮箱成功'
+        timer = setTimeout(() => {
+            showBox.value = false
+            timer = 0
+        }, 3000)
+        showBox.value = true
+        User.isEmailBoxShow = false
+        User.currentEmail = email.value
+
+        emailAccount.value = ''
+        emailPassword.value = ''
+        email.value = ''
+    } else {
+        message.value = '绑定邮箱失败'
+        timer = setTimeout(() => {
+            showBox.value = false
+            timer = 0
+        }, 3000)
+        showBox.value = true
+    }
+}
+const handleBindEmail = () => {
+    if(User.isLogin) {
+        User.isEmailBoxShow = true
+    } else {
+        message.value = '请先登录'
+        timer = setTimeout(() => {
+            showBox.value = false
+            timer = 0
+        }, 3000)
+        showBox.value = true
+    }
+}
+
 const handleImport = () => {
     message.value = '导入成功'
     timer = setTimeout(() => {
@@ -409,6 +571,7 @@ const handleImport = () => {
                 font-size: 0.8rem;
                 font-weight: bold;
                 cursor: pointer;
+
                 &:hover {
                     background-color: #F22F2F;
                 }
@@ -512,21 +675,32 @@ const handleImport = () => {
                 align-items: center;
                 justify-content: space-between;
 
-                button {
-                    width: 10%;
-                    border-radius: 0.3rem;
-                    border: 1px solid rgba(0, 0, 0, 0.25);
-                    background-color: white;
-                    color: #000;
-                    font-size: 0.8rem;
-                    font-weight: bold;
-                    cursor: pointer;
+                .right-container {
+                    width: 50%;
+                    height: 100%;
+                    display: flex;
+                    justify-content: flex-end;
+                    align-items: center;
 
-                    &:hover {
-                        background-color: rgba(0, 0, 0, 0.6);
-                        color: #fff;
+                    button {
+                        margin-left: 10%;
+                        height: 100%;
+                        width: 20%;
+                        border-radius: 0.3rem;
+                        border: 1px solid rgba(0, 0, 0, 0.25);
+                        background-color: white;
+                        color: #000;
+                        font-size: 0.8rem;
+                        font-weight: bold;
+                        cursor: pointer;
+    
+                        &:hover {
+                            background-color: rgba(0, 0, 0, 0.6);
+                            color: #fff;
+                        }
                     }
                 }
+
             }
 
             .user-email {
@@ -537,19 +711,29 @@ const handleImport = () => {
                 align-items: center;
                 justify-content: space-between;
 
-                button {
-                    width: 10%;
-                    border-radius: 0.3rem;
-                    border: 1px solid rgba(0, 0, 0, 0.25);
-                    background-color: white;
-                    color: #000;
-                    font-size: 0.8rem;
-                    font-weight: bold;
-                    cursor: pointer;
+                .right-container {
+                    width: 50%;
+                    height: 100%;
+                    display: flex;
+                    justify-content: flex-end;
+                    align-items: center;
 
-                    &:hover {
-                        background-color: rgba(0, 0, 0, 0.6);
-                        color: #fff;
+                    button {
+                        margin-left: 10%;
+                        height: 100%;
+                        width: 20%;
+                        border-radius: 0.3rem;
+                        border: 1px solid rgba(0, 0, 0, 0.25);
+                        background-color: white;
+                        color: #000;
+                        font-size: 0.8rem;
+                        font-weight: bold;
+                        cursor: pointer;
+    
+                        &:hover {
+                            background-color: rgba(0, 0, 0, 0.6);
+                            color: #fff;
+                        }
                     }
                 }
             }
@@ -968,6 +1152,377 @@ const handleImport = () => {
                 border-bottom: 1px solid gray;
                 cursor: pointer;
                 margin-bottom: 30%;
+            }
+        }
+    }
+
+    .user-phone-box {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        z-index: 1000;
+
+        .user-phone-container {
+            width: 30%;
+            height: 80%;
+            background-color: white;
+            border-radius: 0.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            .close-icon-container {
+                width: 90%;
+                height: 10%;
+                font-weight: bold;
+                margin-bottom: 5%;
+                display: flex;
+                justify-content: flex-end;
+                align-items: flex-start;
+
+                img {
+                    cursor: pointer;
+                }
+            }
+
+            .title {
+                font-size: 1.8rem;
+                font-weight: bolder;
+                margin-bottom: 5%;
+            }
+
+            .account-input-container {
+                height: 8%;
+                width: 80%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 2%;
+
+                .search-bar {
+                    margin-left: 5%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 90%;
+                    height: 80%;
+                    border-radius: 0.3rem;
+                    border: 1px solid rgba(0, 0, 0, 0.25);
+                    background-color: #fff;
+
+                    .search-input {
+                        background-color: transparent;
+                        width: 90%;
+                        height: 80%;
+                        border: none;
+                        outline: none;
+                        font-size: 1rem;
+                        font-weight: bold;
+                        color: rgba(0, 0, 0, 0.6);
+                        line-height: 1rem;
+
+                        &::placeholder {
+                            color: rgba(0, 0, 0, 0.16);
+
+                        }
+                    }
+
+                }
+            }
+
+            .password-input-container {
+                height: 8%;
+                width: 80%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 2%;
+
+                .search-bar {
+                    margin-left: 5%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 90%;
+                    height: 80%;
+                    border-radius: 0.3rem;
+                    border: 1px solid rgba(0, 0, 0, 0.25);
+                    background-color: #fff;
+
+                    .search-input {
+                        background-color: transparent;
+                        width: 90%;
+                        height: 80%;
+                        border: none;
+                        outline: none;
+                        font-size: 1rem;
+                        font-weight: bold;
+                        color: rgba(0, 0, 0, 0.6);
+                        line-height: 1rem;
+
+                        &::placeholder {
+                            color: rgba(0, 0, 0, 0.16);
+
+                        }
+                    }
+
+                }
+            }
+
+            .phone-input-container {
+                height: 8%;
+                width: 80%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 2%;
+
+                .keysvg {
+                    visibility: hidden;
+                }
+
+                .search-bar {
+                    margin-left: 5%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 90%;
+                    height: 80%;
+                    border-radius: 0.3rem;
+                    border: 1px solid rgba(0, 0, 0, 0.25);
+                    background-color: #fff;
+
+                    .search-input {
+                        margin-left: 0%;
+                        background-color: transparent;
+                        width: 90%;
+                        height: 80%;
+                        border: none;
+                        outline: none;
+                        font-size: 1rem;
+                        font-weight: bold;
+                        color: black;
+                        line-height: 1rem;
+
+                        &::placeholder {
+                            color: rgba(0, 0, 0, 0.16);
+
+                        }
+                    }
+
+                }
+
+            }
+
+            .btn-phone {
+                margin-bottom: 5%;
+                width: 65%;
+                height: 8%;
+                border-radius: 0.3rem;
+                border: none;
+                background-color: rgba(0, 0, 0, 0.25);
+                color: #fff;
+                font-size: 1.2rem;
+                font-weight: bold;
+                cursor: pointer;
+                margin-top: 5%;
+
+                &:hover {
+                    background-color: rgba(0, 0, 0, 0.5);
+                }
+            }
+        }
+    }
+    .user-email-box {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        z-index: 1000;
+
+        .user-email-container {
+            width: 30%;
+            height: 80%;
+            background-color: white;
+            border-radius: 0.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            .close-icon-container {
+                width: 90%;
+                height: 10%;
+                font-weight: bold;
+                margin-bottom: 5%;
+                display: flex;
+                justify-content: flex-end;
+                align-items: flex-start;
+
+                img {
+                    cursor: pointer;
+                }
+            }
+
+            .title {
+                font-size: 1.8rem;
+                font-weight: bolder;
+                margin-bottom: 5%;
+            }
+
+            .account-input-container {
+                height: 8%;
+                width: 80%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 2%;
+
+                .search-bar {
+                    margin-left: 5%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 90%;
+                    height: 80%;
+                    border-radius: 0.3rem;
+                    border: 1px solid rgba(0, 0, 0, 0.25);
+                    background-color: #fff;
+
+                    .search-input {
+                        background-color: transparent;
+                        width: 90%;
+                        height: 80%;
+                        border: none;
+                        outline: none;
+                        font-size: 1rem;
+                        font-weight: bold;
+                        color: rgba(0, 0, 0, 0.6);
+                        line-height: 1rem;
+
+                        &::placeholder {
+                            color: rgba(0, 0, 0, 0.16);
+
+                        }
+                    }
+
+                }
+            }
+
+            .password-input-container {
+                height: 8%;
+                width: 80%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 2%;
+
+                .search-bar {
+                    margin-left: 5%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 90%;
+                    height: 80%;
+                    border-radius: 0.3rem;
+                    border: 1px solid rgba(0, 0, 0, 0.25);
+                    background-color: #fff;
+
+                    .search-input {
+                        background-color: transparent;
+                        width: 90%;
+                        height: 80%;
+                        border: none;
+                        outline: none;
+                        font-size: 1rem;
+                        font-weight: bold;
+                        color: rgba(0, 0, 0, 0.6);
+                        line-height: 1rem;
+
+                        &::placeholder {
+                            color: rgba(0, 0, 0, 0.16);
+
+                        }
+                    }
+
+                }
+            }
+
+            .email-input-container {
+                height: 8%;
+                width: 80%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 2%;
+
+                .keysvg {
+                    visibility: hidden;
+                }
+
+                .search-bar {
+                    margin-left: 5%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 90%;
+                    height: 80%;
+                    border-radius: 0.3rem;
+                    border: 1px solid rgba(0, 0, 0, 0.25);
+                    background-color: #fff;
+
+                    .search-input {
+                        margin-left: 0%;
+                        background-color: transparent;
+                        width: 90%;
+                        height: 80%;
+                        border: none;
+                        outline: none;
+                        font-size: 1rem;
+                        font-weight: bold;
+                        color: black;
+                        line-height: 1rem;
+
+                        &::placeholder {
+                            color: rgba(0, 0, 0, 0.16);
+
+                        }
+                    }
+
+                }
+
+            }
+
+            .btn-email {
+                margin-bottom: 5%;
+                width: 65%;
+                height: 8%;
+                border-radius: 0.3rem;
+                border: none;
+                background-color: rgba(0, 0, 0, 0.25);
+                color: #fff;
+                font-size: 1.2rem;
+                font-weight: bold;
+                cursor: pointer;
+                margin-top: 5%;
+
+                &:hover {
+                    background-color: rgba(0, 0, 0, 0.5);
+                }
             }
         }
     }
