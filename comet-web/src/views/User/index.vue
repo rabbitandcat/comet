@@ -7,8 +7,8 @@
                         <img src="@/assets/img/avatar.png" alt="">
                     </div>
                     <div class="name-phone">
-                        <p class="name">{{ User.currentUsername }}</p>
-                        <p class="phone">{{ User.currentPhone }}</p>
+                        <p class="name">{{ User.userInfo.username }}</p>
+                        <p class="phone">{{ User.userInfo.phone }}</p>
                     </div>
                 </div>
                 <button @click="handleLogout" class="log-out">
@@ -47,7 +47,7 @@
                     </p>
                     <div class="right-container">
                         <p class="phone">
-                            {{ User.currentPhone }}
+                            {{ User.userInfo.phone }}
                         </p>
                         <button  @click="handleBindPhone">绑定</button>
                     </div>
@@ -58,7 +58,7 @@
                     </p>
                     <div class="right-container">
                         <p class="phone">
-                            {{ User.currentEmail}}
+                            {{ User.userInfo.email}}
                         </p>
                         <button  @click="handleBindEmail">绑定</button>
                     </div>
@@ -281,8 +281,8 @@ const handleLoginInfoSubmit = async () => {
         captcha: loginCaptcha.value
     })
 
-    if (res.status === 200) {
-        message.value = '登录成功'
+    if (res.data.code == 1) {
+        message.value = res.data.msg
         timer = setTimeout(() => {
             showBox.value = false
             timer = 0
@@ -291,14 +291,22 @@ const handleLoginInfoSubmit = async () => {
         User.isLogin = true
         User.isLoginBoxShow = false
 
-        User.currentUsername = loginAccount.value
-        User.currentPhone = ''
+        User.userInfo.username = loginAccount.value
+        User.userInfo.phone = ''
+        User.setToken(res.data.token)
 
         loginAccount.value = ''
         loginPassword.value = ''
         loginCaptcha.value = ''
+    } else if (res.data.code == 0) {
+        message.value = res.data.msg
+        timer = setTimeout(() => {
+            showBox.value = false
+            timer = 0
+        }, 3000)
+        showBox.value = true
     } else {
-        message.value = '登录失败'
+        message.value = '未知错误'
         timer = setTimeout(() => {
             showBox.value = false
             timer = 0
@@ -359,8 +367,8 @@ const handleRegisterInfoSubmit = async () => {
         captcha: registerCaptcha.value
     })
 
-    if (res.status === 200) {
-        message.value = '注册成功'
+    if (res.data.code == 1) {
+        message.value = res.data.msg
         timer = setTimeout(() => {
             showBox.value = false
             timer = 0
@@ -371,8 +379,15 @@ const handleRegisterInfoSubmit = async () => {
         registerAccount.value = ''
         registerPassword.value = ''
         registerCaptcha.value = ''
+    } else if (res.data.code == 0) {
+        message.value = res.data.msg
+        timer = setTimeout(() => {
+            showBox.value = false
+            timer = 0
+        }, 3000)
+        showBox.value = true
     } else {
-        message.value = '注册失败'
+        message.value = '未知错误'
         timer = setTimeout(() => {
             showBox.value = false
             timer = 0
@@ -398,21 +413,28 @@ const handlePhoneInfoSubmit = async () => {
         password: phonePassword.value,
         phone: phoneNumber.value
     })
-    if (res.status === 200) {
-        message.value = '绑定手机号成功'
+    if (res.data.code == 1) {
+        message.value = res.data.msg
         timer = setTimeout(() => {
             showBox.value = false
             timer = 0
         }, 3000)
         showBox.value = true
         User.isPhoneBoxShow = false
-        User.currentPhone = phoneNumber.value
+        User.userInfo.phone = phoneNumber.value
 
         phoneAccount.value = ''
         phonePassword.value = ''
         phoneNumber.value = ''
+    } else if (res.data.code == 0) {
+        message.value = res.data.msg
+        timer = setTimeout(() => {
+            showBox.value = false
+            timer = 0
+        }, 3000)
+        showBox.value = true
     } else {
-        message.value = '绑定手机号失败'
+        message.value = '未知错误'
         timer = setTimeout(() => {
             showBox.value = false
             timer = 0
@@ -458,7 +480,7 @@ const handleEmailInfoSubmit = async () => {
         }, 3000)
         showBox.value = true
         User.isEmailBoxShow = false
-        User.currentEmail = email.value
+        User.userInfo.email = email.value
 
         emailAccount.value = ''
         emailPassword.value = ''
