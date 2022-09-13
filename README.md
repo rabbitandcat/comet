@@ -3,7 +3,7 @@ A NFT T-shirt selling website
 
 这里是 comet 的前端项目，首先请确保安装 node.js, yarn, VsCode，官网下载即可
 
-点击上方绿色按钮“code”下载压缩包并解压，然后对解压的文件夹右键用 VsCode 打开，按下 `Ctrl + \` 可以打开终端，输入 `cd ./comet-web`，在安装了 node.js 和 yarn 的前提下再在终端输入 `yarn dev`即可在浏览器中看到前端页面
+点击上方绿色按钮“code”下载压缩包并解压，然后对解压的文件夹右键用 VsCode 打开，按下 `Ctrl + `` 可以打开终端，输入 `cd ./comet-web`，在安装了 node.js 和 yarn 的前提下再在终端输入 `yarn dev`即可在浏览器中看到前端页面
 
 
 
